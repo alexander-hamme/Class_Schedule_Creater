@@ -9,7 +9,6 @@ from collections import deque
 import dialogWindow as dWin
 import parseByDays
 import parseTimes
-import operator
 import random
 import time
 
