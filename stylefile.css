@@ -1,0 +1,73 @@
+body { 
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    background-image: url('images/concrete_wall.png');
+    background-repeat: repeat;
+    background-color: gray;
+}
+
+table {
+
+    width: 10%;        
+    float: left;
+    
+    <!--table-layout: fixed;-->
+    
+    overflow:auto;<!--hidden?-->
+    border: solid 1px silver;
+    border-collapse:collapse;
+    background-image: url('images/blizzard.png');
+    background-repeat: repeat;
+    background-color: ghostwhite;
+}
+
+th
+{
+    margin: 0;
+    padding: 5px 10px;
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+tr {
+padding:0px;
+border: 1px solid silver;-->
+}
+
+td
+{
+  
+  text-align: center;
+  margin: 0; 
+  padding: 0px 0px;
+  border-collapse: collapse;
+  border: 1px solid silver;
+}
+.borders {
+   border: 1px solid silver;
+   border-collapse:collapse;
+}
+
+.noborders td {
+   border:0;
+}
+
+.timeCell {
+   padding: 0px 0px;
+   border: 1px solid black;
+   margin: 0;
+   height:60px; 
+   
+}
+
+.freeCell {
+}
+
+th.timeHeading {
+    margin:0;
+    padding: 5px 10px;
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid black;
+    background-color:white;
+}
