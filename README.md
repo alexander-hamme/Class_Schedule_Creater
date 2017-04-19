@@ -3,6 +3,7 @@ Python project to create a graphic schedule designed with HTML and CSS. Input yo
 
 Modules used: 
 Tkinter - GUI design
+
 Collections - Queue data structure for time / class cells
 
 See screenshots folder for sample dialog window and schedule
