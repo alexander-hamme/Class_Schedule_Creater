@@ -5,7 +5,7 @@ Created on Sun Nov 20 21:03:47 2016
 @author: Alex Hamme
 """
 from collections import deque
-import scheduleCellsDataStructure as schedCells
+import scheduleCells as schedCells
 import tkMessageBox, tkSimpleDialog
 import Tkinter as tk
 import dialogWindow
