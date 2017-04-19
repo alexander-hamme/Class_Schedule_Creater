@@ -5,77 +5,42 @@ Created on Mon Nov 28 12:50:11 2016
 @author: Alex Hamme
 """
 
-''' 
-
-convert HH:MM times to seconds?
-
-
---> 
-t = "11:10"
-seconds = sum(int(x) * 60 ** (i+1) for i,x in enumerate(reversed(t.split(":"))))
-^ needs to be in 24 hour format already
-
-
-or tuples with hour as key; (hour, val)?
---> so each hour has its own tuple
-
-'''
-
-''' for html table, group cells into hour blocks? *** if they are all the same.
-
-otherwise, divide up until you reach the smallest time unit that will allow you to display the class time.
-
-E.g. hour --> 2   30 minute blocks --> 4   15 minute blocks --> 6   10 minute blocks --> 12   5 minute blocks
-
-
-
-jsfiddle.net
-'''
-
-import dialogWindow as dWin
-import parseByDays, parseTimes
 from collections import deque
-import operator, random, time
+import dialogWindow as dWin
+import parseByDays
+import parseTimes
+import operator
+import random
+import time
 
-beginningTime = (8,0)  #8:00 AM
-endingTime = (18,60)    #up until 7:00 PM
 
-''' make it by 5 minute intervals, if less, round down or up?'''
+beginningTime = (8,0)  # start at 8:00 AM
+endingTime = (18,60)   # up until 7:00 PM
 
-
-''' don't do it by hours, except for the very left column!!!'''
-
-class cellBlock:
+class CellScheduler:
     def __init__(self):
-      self.rowSpan = 1
-      self.html = ""
+      pass
+    
+        
+def maintainHHMM(timeTuple):
+    tmp = tuple(timeTuple)
+    if tmp[1] >= 60 or tmp[1]%15 != 0:
+        if tmp[1] >= 60:
+            tmp = tuple((tmp[0]+1,tmp[1]%60))
+        if tmp[1]%15 != 0:
+            tmp = (tmp[0],(tmp[1]+5)-(tmp[1]+5)%15) # round down to nearest 15 unless within 5
+
+    return tmp
+
+def incrementTime(timeTuple):
+    #return maintainHHMM((timeTuple[0],timeTuple[1]+15))
+    return ((timeTuple[0],timeTuple[1]+15))
 
 def main():
-    #%%
     
     fullFreeHourCell = '''<tbody class = "border">'''+ 4*'''<tr class = "noborders"> <td>&nbsp</td></tr>'''
     
-            
-    def maintainHHMM(timeTuple):
-        tmp = tuple(timeTuple)
-        if tmp[1] >= 60 or tmp[1]%15 != 0:
-            if tmp[1] >= 60:
-                tmp = tuple((tmp[0]+1,tmp[1]%60))
-            if tmp[1]%15 != 0:
-                tmp = (tmp[0],(tmp[1]+5)-(tmp[1]+5)%15) # round down to nearest 15 unless within 5
-                
-        return tmp
-    
-    def incrementTime(timeTuple):
-        #return maintainHHMM((timeTuple[0],timeTuple[1]+15))
-        return ((timeTuple[0],timeTuple[1]+15))
-    # DON'T use unless you can check that you are at the beginning of an hour slot
-    
-    """ make it by 15 min slots. if it's at 3:10, for example, just position it at 15.""" 
-    
     tableHTML = ""
-    
-    #with open("tableHTML.txt",'r+') as tableHTML:
     
     all_classes = parseTimes.main(parseByDays.main(dWin.main()))
     
